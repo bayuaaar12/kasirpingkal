@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminCustomerController extends Controller
@@ -82,8 +83,20 @@ class AdminCustomerController extends Controller
     {
         $customer = Customer::findOrFail($id);
 
-        if ($customer->face_image && file_exists(public_path($customer->face_image))) {
-            unlink(public_path($customer->face_image));
+        if ($customer->face_image) {
+            $imagePath = public_path($customer->face_image);
+
+            if (is_file($imagePath) && is_writable($imagePath)) {
+                try {
+                    unlink($imagePath);
+                } catch (\Throwable $th) {
+                    Log::warning('Gagal menghapus foto customer', [
+                        'customer_id' => $customer->id,
+                        'path' => $imagePath,
+                        'error' => $th->getMessage(),
+                    ]);
+                }
+            }
         }
 
         $customer->delete();

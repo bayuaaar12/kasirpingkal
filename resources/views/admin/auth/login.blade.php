@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>Login | Kasir Pingkal</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -14,16 +14,17 @@
   <link rel="stylesheet" href="/vendor/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/vendor/admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/css/admin-modern.css">
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="/vendor/admin/index2.html" class="h1"><b>Admin</b>LTE</a>
+      <a href="/login" class="h1">Kasir Pingkal</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Masuk untuk mengelola transaksi toko</p>
       
       @if (session()->has('loginError'))
         <div class="alert alert-danger">{{ session('loginError') }}</div>

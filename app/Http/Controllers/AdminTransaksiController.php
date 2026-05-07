@@ -6,6 +6,7 @@ use App\Models\Produk;
 use App\Models\Transaksi;
 use App\Models\TransaksiDetail;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AdminTransaksiController extends Controller
 {
@@ -140,6 +141,17 @@ class AdminTransaksiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transaksi = Transaksi::find($id);
+
+        if (!$transaksi) {
+            Alert::error('Gagal', 'Transaksi tidak ditemukan');
+            return redirect()->back();
+        }
+
+        TransaksiDetail::whereTransaksiId($id)->delete();
+        $transaksi->delete();
+
+        Alert::success('Sukses', 'Transaksi berhasil dihapus');
+        return redirect()->back();
     }
 }

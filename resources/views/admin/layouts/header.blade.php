@@ -7,6 +7,9 @@
     <li class="nav-item">
       <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
     </li>
+    <li class="nav-item d-none d-sm-inline-flex align-items-center ml-2">
+      <span class="text-muted font-weight-bold">Admin Kasir</span>
+    </li>
   </ul>
 
     <!-- Right navbar links -->
@@ -21,7 +24,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a href="/logout" class="nav-link">
+        <a href="/logout" class="nav-link" title="Logout">
           <i class="fa fa-sign-out-alt"></i>
         </a>
       </li>
