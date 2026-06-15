@@ -16,10 +16,11 @@ class FaceCustomerController extends Controller
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:50',
             'discount_percent' => 'nullable|integer|min:0|max:100',
+            'face_label' => 'nullable|string|max:255',
             'face_image_base64' => 'required|string',
         ]);
 
-        $faceLabel = Str::slug($data['name'], '_');
+        $faceLabel = $data['face_label'] ?? Str::slug($data['name'], '_');
         $discountPercent = $data['discount_percent'] ?? 0;
         $imagePath = $this->storeFaceImage($data['face_image_base64'], $faceLabel);
 
@@ -29,7 +30,7 @@ class FaceCustomerController extends Controller
                 'name' => $data['name'],
                 'phone' => $data['phone'] ?? null,
                 'discount_percent' => $discountPercent,
-                'is_member' => $discountPercent > 0,
+                'is_member' => true,
                 'face_image' => $imagePath,
             ]
         );
